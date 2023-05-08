@@ -131,6 +131,7 @@ dist
 
 #ignore the bootstrap directory
 /bootstrap-5.0.2-dist
+.DS_Store
 
 #ignore the builds for now
 /release-builds
