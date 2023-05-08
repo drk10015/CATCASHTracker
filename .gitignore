@@ -128,3 +128,9 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+#ignore the bootstrap directory
+/bootstrap-5.0.2-dist
+
+#ignore the builds for now
+/release-builds
