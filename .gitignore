@@ -135,3 +135,5 @@ dist
 
 #ignore the builds for now
 /release-builds
+
+CATCASH.code-workspace

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'"> -->
+  <title class="mainTitle">
+  </title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="../bootstrap-5.0.2-dist/css/bootstrap.min.css">
+  <!-- jQuery library -->
+  <script src="../bootstrap-5.0.2-dist/jquery-3.6.4.min.js"></script>
+  <!-- Bootstrap JavaScript -->
+  <script src="../bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
+  <style>
+    .navbar-nav .nav-link {
+      color: #f9f7f6;
+      border-radius: 0.25rem
+    }
+
+    .nav-link.active,
+    .nav-link:hover {
+      background-color: #f1592a;
+      border-radius: 0.25rem;
+    }
+
+    .a-link.active,
+    .a-link:hover {
+      background-color: #f9f7f6;
+      border-radius: 0.25rem;
+    }
+  </style>
+
+</head>
+
+<body class="bg-secondary">
+  <nav class="navbar sticky-top navbar-expand-sm navbar-nav navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand mainTitle homeViewButton" href="#">
+        <img src="../assets/icn.icns" width="30" height="30" alt="">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse"
+        aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link dormViewButton" href="#">Dorms</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link studentViewButton" href="#">Students</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link storeViewButton" href="#">Store</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-4 text-white mainTitle">Welcome to
+      </h1>
+      <p class="lead text-light">Where would you like to go today?</p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4" class="">
+        <a href="#" class="btn a-link dormViewButton" id="">
+          <img src="../assets/dorm.png" alt="" class="img-thumbnail bg-transparent border-0">
+          <h2>Dorms</h2>
+          <p>View and edit information for specific dorms.</p>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="#" class="btn a-link studentViewButton">
+          <img src="../assets/students.png" alt="" class="img-thumbnail bg-transparent border-0">
+          <h2>Students</h2>
+          <p>View and edit specific students.</p>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="#" class="btn a-link storeViewButton">
+          <img src="../assets/store.png" alt="" class="img-thumbnail bg-transparent border-0">
+
+          <h2>Store</h2>
+          <p>View and edit items in the store.</p>
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../utils/launchpage.js"></script>
+  <script src="../controllers/indexController.js"></script>
+</body>
+
+
+</html>

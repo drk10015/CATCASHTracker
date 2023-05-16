@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'"> -->
+    <title class="mainTitle">
+    </title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="../bootstrap-5.0.2-dist/jquery-3.6.4.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="../bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
+    <style>
+        .navbar-nav .nav-link {
+            color: #f9f7f6;
+            border-radius: 0.25rem
+        }
+
+        .nav-link.active,
+        .nav-link:hover {
+            background-color: #f1592a;
+            border-radius: 0.25rem;
+        }
+
+        .a-link.active,
+        .a-link:hover {
+            background-color: #f9f7f6;
+            border-radius: 0.25rem;
+        }
+    </style>
+
+</head>
+
+<body class="bg-secondary">
+    <nav class="navbar sticky-top navbar-expand-sm navbar-nav navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand mainTitle homeViewButton" href="#">
+                <img src="../assets/icn.icns" width="30" height="30" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse"
+                aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link dormViewButton" href="#">Dorms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link studentViewButton" href="#">Students</a>
+                    </li>
+                    <li class="nav-item storeViewButton">
+                        <a class="nav-link" href="#">Store</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <script src="../utils/launchpage.js"></script>
+    <script src="../controllers/dormViewController.js"></script>
+</body>
+
+
+</html>
