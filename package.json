@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "mysql2": "^3.3.0",
-    "server.js": "^1.0.0",
+    "plotly.js-dist": "^2.23.1",
     "uuid": "^9.0.0"
   }
 }

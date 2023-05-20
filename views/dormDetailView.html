@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'"> -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
     <title class="mainTitle">
     </title>
 
@@ -25,22 +25,23 @@
             border-radius: 0.25rem;
         }
 
-        .a-link {
-            transition: linear 0.1s all;
-        }
-
+        .a-link.active,
         .a-link:hover {
-            transform: scale(1.06);
-        }
-
-        ::-webkit-scrollbar {
-            display: none;
+            background-color: #f9f7f6;
+            border-radius: 0.25rem;
         }
     </style>
+
 </head>
 
 <body class="bg-secondary">
-    <nav class="navbar navbar-expand-sm navbar-nav navbar-dark bg-dark">
+    <script>
+        alert("I AM WORKING")
+        window.ipcComms.receiveDormDetailViewID = (id) => {
+            alert(id)
+        }
+    </script>
+    <nav class="navbar sticky-top navbar-expand-sm navbar-nav navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand mainTitle homeViewButton" href="#">
                 <img src="../assets/icn.icns" width="30" height="30" alt="">
@@ -57,39 +58,18 @@
                     <li class="nav-item">
                         <a class="nav-link studentViewButton" href="#">Students</a>
                     </li>
-                    <li class="nav-item storeViewButton">
-                        <a class="nav-link" href="#">Store</a>
+                    <li class="nav-item">
+                        <a class="nav-link storeViewButton" href="#">Store</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+    <h1 class="card-header" id="dormTitle">Dorm </h1>
 
-    <div class="card-header bg-dark text-center text-white sticky-top">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 pull-left">
-                    <h1 class="">Dormitories</h1>
-                </div>
-                <div class="col-sm-4"></div>
-                <div class="col-md-4 pull-right">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Doritormy Search"
-                            aria-describedby="questionMark">
-                        <div class="input-group-append">
-                            <span class="input-group-text" id="questionMark">?</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container mt-5" id="card-load">
-
-    </div>
-    </div>
+    <span id=""></span>
     <script src="../utils/launchpage.js"></script>
-    <script src="../controllers/dormViewController.js"></script>
+    <script src="../controllers/dormDetailController.js"></script>
 </body>
 
 

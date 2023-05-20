@@ -1,14 +1,18 @@
-const { v4: uuid } = require("uuid")
 
 class Student {
 
-    constructor() {
-        this._id = uuid();
-        this.name = "dylan";
-        this.behavioralID = uuid();
-
+    constructor(_id, name, dormID, behavioralLogID, dateAdded) {
+        if (_id != null) {
+            this._id = _id;
+        } else {
+            this._id = null;
+        }
+        this.name = name;
+        this.behavioralLogID = behavioralLogID;
+        this.dormID = dormID;
     }
 
 
-
 }
+
+module.exports = { Student }

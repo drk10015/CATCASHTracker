@@ -22,13 +22,21 @@
             "webRoot": "${workspaceFolder}/controllers",
             "timeout": 30000
         },
+        {
+            "name": "Server",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/server/server.js",
+            "cwd": "${workspaceFolder}/server",
+        }
     ],
     "compounds": [
         {
             "name": "Electron: All",
             "configurations": [
                 "Electron: Main",
-                "Electron: Renderer"
+                "Electron: Renderer",
+                "Server"
             ]
         }
     ]

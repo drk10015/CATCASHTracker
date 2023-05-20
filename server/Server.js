@@ -1,7 +1,9 @@
 /**
  * Simulated server but probably will be nothing like this and I will hate myself
  */
-
+// const mysql = require('mysql2');
+const { Student } = require("../models/student.js")
+const { Dorm } = require("../models/dorm.js")
 class Server {
 
     constructor(mysql) {
@@ -9,9 +11,14 @@ class Server {
         this.connection = null;
         this.connect = this.connect.bind(this);
         this.close = this.close.bind(this);
+        this.saveDorm = this.saveDorm.bind(this);
+        this.saveStudent = this.saveStudent.bind(this);
+        this.getStudents = this.getStudents.bind(this);
+        this.getDorms = this.getDorms.bind(this);
+
     }
 
-    connect() {
+    async connect(cb) {
         this.connection = this.mysql.createConnection({
             host: 'localhost',
             user: "root",
@@ -32,6 +39,118 @@ class Server {
                 return;
             }
             console.log("connected to server!")
+            if (cb) {
+                cb();
+                return
+            }
+            return
+        })
+    }
+
+    // Dorm functions
+
+    saveDorm(dorm) {
+        if (this.connection == null) {
+            this.connect();
+        }
+        let sql = "INSERT INTO Dorms (maxNumStudents) VALUES (?)"
+        this.connection.query(sql, [dorm.maxNumStudents], (err, result) => {
+            if (err) {
+                console.error(err)
+                return;
+            }
+            console.log("Dorm saved!")
+        })
+
+    }
+
+    async getDorms(limit, offset, cb) {
+        if (this.connection == null) {
+            this.connect();
+        }
+        let sql = "SELECT * FROM Dorms LIMIT ? OFFSET ?"
+        try {
+            const result = await new Promise((resolve, reject) => {
+                this.connection.query(sql, [limit, offset], (err, result) => {
+                    if (err) {
+                        console.error(err);
+                        reject(err);
+                    } else {
+                        console.log("Dorms retrieved!");
+                        resolve(result);
+                    }
+                });
+            });
+
+            for (let i = 0; i < result.length; i++) {
+                result[i] = new Dorm(result[i]._id, null, result[i].maxNumStudents);
+                result[i].students = await this.getStudentsFromDorm(result[i]);
+            }
+
+            if (cb) {
+                cb(result);
+            }
+
+            return result;
+        } catch (error) {
+            console.error(error);
+            return;
+        }
+    }
+
+    async getStudentsFromDorm(dorm, cb) {
+        if (this.connection == null) {
+            this.connect();
+        }
+        let sql = "SELECT * FROM Students WHERE dormID = ?"
+        return new Promise((resolve, reject) => {
+            this.connection.query(sql, [dorm.id], (err, result) => {
+                if (err) {
+                    console.error(err)
+                    reject(err);
+                } else {
+                    resolve(result);
+                }
+            });
+        });
+    }
+
+    // Student functions
+
+    saveStudent(student) {
+        if (this.connection == null) {
+            this.connect();
+        }
+        let sql = "INSERT INTO Students (name, dormID, behavioralLogID, dateAdded) VALUES (?, ?, ?, CURRENT_DATE)"
+        this.connection.query(sql, [student.name, student.dormID, student.behavioralLogID], (err, result) => {
+            if (err) {
+                console.error(err)
+                return;
+            } else if (result) {
+                console.log(result)
+            }
+            console.log("Student saved!")
+        })
+    }
+
+    getStudents(limit, offset, cb) {
+        if (this.connection == null) {
+            this.connect();
+        }
+        let sql = "SELECT * FROM Students LIMIT ? OFFSET ?"
+        this.connection.query(sql, [limit, offset], (err, result) => {
+            if (err) {
+                console.error(err)
+                return;
+            }
+            console.log("Students retrieved!");
+            for (let i = 0; i < result.length; i++) {
+                result[i] = new Student(result[i]._id, result[i].name, result[i].dormID, result[i].behavioralLogID, result[i].dateAdded)
+            }
+            if (cb) {
+                return cb(result)
+            }
+            return result;
         })
     }
 
@@ -44,3 +163,13 @@ class Server {
 }
 
 module.exports = { Server }
+// function test(s, limit, offset, cb) {
+//     return s.getDorms(limit, offset, cb)
+// }
+// const s = new Server(mysql);
+// s.connect();
+// let dorms = []
+// test(s, 10, 0, (res) => {
+//     dorms = res;
+//     console.log(dorms)
+// })
