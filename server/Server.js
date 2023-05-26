@@ -1,7 +1,7 @@
 /**
  * Simulated server but probably will be nothing like this and I will hate myself
  */
-// const mysql = require('mysql2');
+const mysql = require('mysql2');
 const { Student } = require("../models/student.js")
 const { Dorm } = require("../models/dorm.js")
 class Server {
@@ -15,7 +15,9 @@ class Server {
         this.saveStudent = this.saveStudent.bind(this);
         this.getStudents = this.getStudents.bind(this);
         this.getDorms = this.getDorms.bind(this);
-
+        this.getDormByID = this.getDormByID.bind(this);
+        this.dormSearch = this.dormSearch.bind(this);
+        this.studentSearch = this.studentSearch.bind(this);
     }
 
     async connect(cb) {
@@ -64,6 +66,32 @@ class Server {
 
     }
 
+    getDormByID(id, cb) {
+
+        if (this.connection == null) {
+            this.connect();
+        }
+        let sql = "SELECT * FROM Dorms WHERE _id = ?"
+        console.log(id)
+        try {
+            this.connection.query(sql, [id], (err, result) => {
+                console.log(sql)
+                if (err) {
+                    console.error(err)
+                    return;
+                }
+                console.log("Dorm retrieved!");
+                if (cb) {
+                    return cb(result)
+                }
+                return result;
+            })
+        } catch (error) {
+            console.error(error)
+            return
+        }
+    }
+
     async getDorms(limit, offset, cb) {
         if (this.connection == null) {
             this.connect();
@@ -96,6 +124,23 @@ class Server {
             console.error(error);
             return;
         }
+    }
+    dormSearch(search, cb) {
+        if (this.connection == null) {
+            this.connect();
+        }
+        let sql = "SELECT _id FROM Dorms WHERE _id LIKE ?"
+        this.connection.query(sql, [search], (err, result) => {
+            if (err) {
+                console.error(err)
+                return;
+            }
+            console.log("Dorm retrieved!");
+            if (cb) {
+                return cb(result)
+            }
+            return result;
+        })
     }
 
     async getStudentsFromDorm(dorm, cb) {
@@ -154,6 +199,24 @@ class Server {
         })
     }
 
+    studentSearch(search, cb) {
+        if (this.connection == null) {
+            this.connect();
+        }
+        let sql = "SELECT name FROM Students WHERE name LIKE ?"
+        this.connection.query(sql, [search], (err, result) => {
+            if (err) {
+                console.error(err)
+                return;
+            }
+            console.log("Student retrieved!");
+            if (cb) {
+                return cb(result)
+            }
+            return result;
+        })
+    }
+
     close() {
         this.connection.end();
         console.log("closed connection to server!")
@@ -163,13 +226,12 @@ class Server {
 }
 
 module.exports = { Server }
-// function test(s, limit, offset, cb) {
-//     return s.getDorms(limit, offset, cb)
+// function test(s, search, cb) {
+//     return s.studentSearch(search, cb)
 // }
 // const s = new Server(mysql);
 // s.connect();
-// let dorms = []
-// test(s, 10, 0, (res) => {
-//     dorms = res;
-//     console.log(dorms)
+// // let dorms = []
+// test(s, "%A%", (res) => {
+//     console.log(res)
 // })

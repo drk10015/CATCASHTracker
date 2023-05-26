@@ -32,6 +32,17 @@
         }
     </style>
     <script type="module" src="../bootstrap-5.0.2-dist/chart.umd.js"></script>
+    <script>
+        try {
+            new Chart()
+        } catch (e) {
+            console.log(e)
+            let script = document.createElement("script")
+            script.src = "../bootstrap-5.0.2-dist/chart.umd.js"
+            script.onerror = () => { alert("Timeout Error: Please press Ctrl + R to refresh the page if you are seeing this error.") }
+            document.head.appendChild(script);
+        }
+    </script>
 
 </head>
 
@@ -60,51 +71,64 @@
             </div>
         </div>
     </nav>
+
+
     <h1 class="card-header" id="studentTitle"></h1>
-    <p id="studentIDLabel">Student ID: </p>
-    <p id="studentNameLabel">Student Name: </p>
-    <p id="dormIDLabel">Dorm Number: </p>
-    <span class="container" id="behavioralData">
-        <div class="row mb-3">
-            <h2>Behavioral Data:</h2>
+    <span class="container" id="behavioralData"></span>
+    <div class="row">
+        <div class="col">
+            <p id="studentIDLabel" class="ml-4">Student ID: </p>
         </div>
-        <div class="row">
-            <div class="col-1"></div>
-            <div class="btn-group col-lg" role="group">
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                <label class="btn btn-outline-light text-dark fw-bold" for="btnradio1">Scatter Plot</label>
-
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                <label class="btn btn-outline-light text-dark fw-bold" for="btnradio2">Pie Chart</label>
-
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-                <label class="btn btn-outline-light text-dark fw-bold" for="btnradio3">Line Graph</label>
-            </div>
-            <div class="col-1"></div>
+    </div>
+    <div class="row">
+        <p id="studentNameLabel">Student Name: </p>
+    </div>
+    <div class="row">
+        <div class="col">
+            <span class="text-left" id="dormIDLabel">Dorm Number: </span>
         </div>
+    </div>
+    <div class="row mb-3">
+        <h2>Behavioral Data:</h2>
+    </div>
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="btn-group col-lg" role="group">
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+            <label class="btn btn-outline-light text-dark fw-bold" for="btnradio1">Scatter Plot</label>
 
-        <div class="row">
-            <div class="col-1"></div>
-            <div class="col-lg">
-                <canvas id="MyChart" class="bg-light figure-img img-fluid rounded mt-4"></canvas>
-            </div>
-            <div class="col-1"></div>
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+            <label class="btn btn-outline-light text-dark fw-bold" for="btnradio2">Pie Chart</label>
+
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+            <label class="btn btn-outline-light text-dark fw-bold" for="btnradio3">Bar Graph</label>
         </div>
-        <div class="row">
-            <div class="col-1"></div>
-            <div class="btn-group col-lg" role="group">
-                <input type="radio" class="btn-check" name="btnradio2" id="btnradio4" autocomplete="off">
-                <label class="btn btn-outline-light text-dark fw-bold" for="btnradio4">1 Week</label>
-
-                <input type="radio" class="btn-check" name="btnradio2" id="btnradio5" autocomplete="off">
-                <label class="btn btn-outline-light text-dark fw-bold" for="btnradio5">30 Days</label>
-
-                <input type="radio" class="btn-check" name="btnradio2" id="btnradio6" autocomplete="off" checked>
-                <label class="btn btn-outline-light text-dark fw-bold" for="btnradio6">60 Days</label>
-            </div>
-            <div class="col-1"></div>
+        <div class="col-1"></div>
+    </div>
+    <div class="row"><span class="col-lg text-center mt-2" id="scatPlot"></span></div>
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-lg">
+            <canvas id="MyChart" class="bg-light figure-img img-fluid rounded mt-3"></canvas>
         </div>
+        <div class="col-1"></div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-1"></div>
+        <div class="btn-group col-lg" role="group">
+            <input type="radio" class="btn-check" name="btnradio2" id="btnradio4" autocomplete="off">
+            <label class="btn btn-outline-light text-dark fw-bold" for="btnradio4">1 Week</label>
+
+            <input type="radio" class="btn-check" name="btnradio2" id="btnradio5" autocomplete="off">
+            <label class="btn btn-outline-light text-dark fw-bold" for="btnradio5">30 Days</label>
+
+            <input type="radio" class="btn-check" name="btnradio2" id="btnradio6" autocomplete="off" checked>
+            <label class="btn btn-outline-light text-dark fw-bold" for="btnradio6">60 Days</label>
+        </div>
+        <div class="col-1"></div>
+    </div>
     </span>
+    <h2 class="fixed-bottom text-center">** Note: THIS IS A DEMO FINAL DESIGN WILL CHANGE. **</h2>
     <script src="../utils/launchpage.js"></script>
     <script src="../controllers/studentDetailController.js"></script>
 </body>

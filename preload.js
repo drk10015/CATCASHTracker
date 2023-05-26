@@ -33,16 +33,28 @@ contextBridge.exposeInMainWorld('ipcComms', {
 
 })
 contextBridge.exposeInMainWorld('server', {
-    connect: () => {
+    connect: (cb) => {
         s = new Server(mysql)
         s.connect()
+        if (cb) {
+            cb(s)
+        }
         return s
     },
     getStudents: (s, limit, offset, cb) => {
         return s.getStudents(limit, offset, cb)
     },
+    getDormByID: (s, id, cb) => {
+        return s.getDormByID(id, cb)
+    },
     getDorms: (s, limit, offset, cb) => {
-        s.getDorms(limit, offset, cb)
+        return s.getDorms(limit, offset, cb)
+    },
+    getDormsBySearch: (s, search, cb) => {
+        return s.dormSearch(search, cb)
+    },
+    getStudentsBySearch: (s, search, cb) => {
+        return s.studentSearch(search, cb)
     },
     close: (s) => {
         s.close()
@@ -151,11 +163,11 @@ contextBridge.exposeInMainWorld('constants', {
 
             }
             if (red >= 1)
-                return "Red"
+                return ["Red", [red, yellow, green]]
             else if (red == 0 && yellow >= 3)
-                return "Yellow"
+                return ["Yellow", [red, yellow, green]]
             else if (red === 0 && yellow <= 2)
-                return "Green"
+                return ["Green", [red, yellow, green]]
         },
         chartEnum: {
             0: "Red",

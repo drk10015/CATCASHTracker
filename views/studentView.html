@@ -36,6 +36,15 @@
         ::-webkit-scrollbar {
             display: none;
         }
+
+        #addStudentButton {
+            color: white
+        }
+
+        #addStudentButton.active,
+        #addStudentButton:hover {
+            color: black;
+        }
     </style>
 </head>
 
@@ -68,11 +77,11 @@
     <div class="card-header text-center text-white sticky-top bg-dark">
         <div class="container">
             <div class="row">
-                <div class="col-md-4 pull-left">
+                <div class="col-1 pull-left">
                     <h1 class="">Students</h1>
                 </div>
-                <div class="col-sm-4"></div>
-                <div class="col-md-4 pull-right">
+                <div class="col-5"></div>
+                <div class="col-4 pull-right">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Student Search"
                             aria-describedby="questionMark">
@@ -81,10 +90,43 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-1 pull-right"><button type="button" id="addStudentButton"
+                        class="btn btn-outline-light pull-right" data-bs-toggle="modal" data-bs-target="#myModal">
+                        Add Student
+                    </button></div>
             </div>
         </div>
     </div>
     <div class="container mt-5" id="card-load">
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form>
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="myModalLabel">Create New Student</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Enter Student's name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Dorm ID Number</label>
+                                <input type="email" class="form-control" id="email"
+                                    placeholder="Enter Student's Dorm ID">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Add Student</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
 
     </div>
     </div>
