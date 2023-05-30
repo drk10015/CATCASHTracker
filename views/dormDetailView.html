@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'"> -->
+    <title class="mainTitle">
+    </title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="../bootstrap-5.0.2-dist/jquery-3.6.4.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="../bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
+    <style>
+        .navbar-nav .nav-link {
+            color: #f9f7f6;
+            border-radius: 0.25rem
+        }
+
+        .nav-link.active,
+        .nav-link:hover {
+            background-color: #f1592a;
+            border-radius: 0.25rem;
+        }
+
+        .a-link.active,
+        .a-link:hover {
+            background-color: #f9f7f6;
+            border-radius: 0.25rem;
+        }
+    </style>
+    <script type="module" src="../bootstrap-5.0.2-dist/chart.umd.js"></script>
+
+</head>
+
+<body class="bg-secondary">
+    <nav class="navbar sticky-top navbar-expand-sm navbar-nav navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand mainTitle homeViewButton" href="#">
+                <img src="../assets/icn.icns" width="30" height="30" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse"
+                aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link dormViewButton" href="#">Dorms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link studentViewButton" href="#">Students</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link behaviorViewButton" href="#">Input Behavioral Data</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link storeViewButton" href="#">Store</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <h1 class="header" id="dormTitle">Dorm</h1>
+    <span class="container" id="behavioralData">
+        <div class="row">
+            <p id="dormIDLabel">Dorm ID: </p>
+        </div>
+        <div class="" id="residentSection">
+            <div class="row">
+                <p class="col-lg ">Residents: </p>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <h2>Dorm Summary Behavioral Data:</h2>
+        </div>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="btn-group col-lg" role="group">
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                <label class="btn btn-outline-light text-dark fw-bold" for="btnradio1">Scatter Plot</label>
+
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                <label class="btn btn-outline-light text-dark fw-bold" for="btnradio2">Pie Chart</label>
+
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                <label class="btn btn-outline-light text-dark fw-bold" for="btnradio3">Bar Graph</label>
+            </div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row"><span class="col-lg text-center mt-2" id="scatPlot"></span></div>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-lg">
+                <canvas id="MyChart" class="bg-light figure-img img-fluid rounded mt-3"></canvas>
+            </div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-1"></div>
+            <div class="btn-group col-lg" role="group">
+                <input type="radio" class="btn-check" name="btnradio2" id="btnradio4" autocomplete="off">
+                <label class="btn btn-outline-light text-dark fw-bold" for="btnradio4">1 Week</label>
+
+                <input type="radio" class="btn-check" name="btnradio2" id="btnradio5" autocomplete="off">
+                <label class="btn btn-outline-light text-dark fw-bold" for="btnradio5">30 Days</label>
+
+                <input type="radio" class="btn-check" name="btnradio2" id="btnradio6" autocomplete="off" checked>
+                <label class="btn btn-outline-light text-dark fw-bold" for="btnradio6">60 Days</label>
+            </div>
+            <div class="col-1"></div>
+        </div>
+    </span>
+    <script src="../utils/launchpage.js"></script>
+    <script src="../controllers/dormDetailController.js"></script>
+</body>
+
+
+</html>

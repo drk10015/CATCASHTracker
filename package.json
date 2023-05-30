@@ -1,0 +1,40 @@
+{
+  "name": "CatCashTracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=./assets/icon.png --prune=true --out=release-builds",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "com.dylankoger.catcash",
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "asarUnpack": [
+      "**/*.db"
+    ]
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^24.2.0",
+    "electron-builder": "^23.6.0",
+    "electron-packager": "^17.1.1",
+    "electron-winstaller": "^5.1.0"
+  },
+  "dependencies": {
+    "exceljs": "^4.3.0",
+    "plotly.js-dist": "^2.23.1",
+    "sqlite3": "^5.1.6",
+    "uuid": "^9.0.0"
+  }
+}
