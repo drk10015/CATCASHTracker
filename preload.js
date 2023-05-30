@@ -224,18 +224,3 @@ contextBridge.exposeInMainWorld('constants', {
         }
     }
 })
-            }
-if (red >= 1)
-    return ["Red", [red, yellow, green]]
-else if (red == 0 && yellow >= 3)
-    return ["Yellow", [red, yellow, green]]
-else if (red === 0 && yellow <= 2)
-    return ["Green", [red, yellow, green]]
-        },
-chartEnum: {
-    0: "Red",
-        1: "Yellow",
-            2: "Green"
-}
-    }
-})
