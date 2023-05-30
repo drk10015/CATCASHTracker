@@ -1,5 +1,4 @@
 const cEnum = window.constants.colorEnum
-
 const ctx = document.getElementById("MyChart")
 const fbGroup = document.getElementById("firstButtonGroup")
 const sbGroup = document.getElementById("secondButtonGroup")
