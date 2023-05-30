@@ -57,7 +57,7 @@
 <body class="bg-secondary">
     <nav class="navbar sticky-top navbar-expand-sm navbar-nav navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand mainTitle homeViewButton" href="#">
+            <a class="navbar-brand mainTitle homeViewButton">
                 <img src="../assets/icn.icns" width="30" height="30" alt="">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse"
@@ -67,16 +67,16 @@
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link dormViewButton" href="#">Dorms</a>
+                        <a class="nav-link dormViewButton">Dorms</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link studentViewButton" href="#">Students</a>
+                        <a class="nav-link studentViewButton">Students</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link behaviorViewButton" href="#">Input Behavioral Data</a>
+                        <a class="nav-link behaviorViewButton">Input Behavioral Data</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link storeViewButton" href="#">Store</a>
+                        <a class="nav-link storeViewButton">Store</a>
                     </li>
                 </ul>
             </div>
@@ -87,8 +87,10 @@
     <h1 class="header container mt-4">
         <div class="row">
             <span id="studentTitle" class="col-sm ml-4"></span>
-            <div class="col-sm"></div>
-            <span class="btn btn-outline-light col-sm pull-right" id="addNewPeriodButton">Add Behavioral Data</span>
+            <span class="btn btn-outline-light col-sm-2 justify-content-center" id="moveStudent" data-bs-toggle="modal"
+                data-bs-target="#myModal">Move Student</span>
+            <div class="col-sm-1"></div>
+            <span class="btn btn-outline-light col-sm-2" id="addNewPeriodButton">Add Behavioral Data</span>
         </div>
     </h1>
     <span class="container" id="behavioralData">
@@ -161,6 +163,30 @@
             <div class="col-md"></div>
         </div>
     </span>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="myModalLabel">Move Student To Dorm</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Move to Dorm</label>
+                            <select name="email" id="dormSelect"></select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary" id="submitStudentButton"
+                            data-bs-dismiss="modal">Move Student</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
     <h2 class="text-center">** Note: THIS IS A DEMO FINAL DESIGN WILL CHANGE. **</h2>
     <script src="../utils/launchpage.js"></script>
     <script src="../controllers/studentDetailController.js"></script>

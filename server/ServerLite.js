@@ -304,6 +304,24 @@ class Server {
         })
     }
 
+    updateStudentDorm(studentID, dormID, cb) {
+        if (this.connection == null) {
+            this.connect();
+        }
+        console.log(studentID, dormID, "Updating student dorm")
+        let sql = "UPDATE Students SET dormID = ? WHERE _id = ?"
+        this.connection.run(sql, [dormID, studentID], (err, result) => {
+            if (err) {
+                console.error(err)
+                return;
+            }
+            console.log("Student updated!")
+            if (cb) {
+                return cb(result)
+            }
+        })
+    }
+
     //Behaviroal Log functions
 
     async saveBehavioralLog(blog, cb) {

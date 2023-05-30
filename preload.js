@@ -1,8 +1,8 @@
 const { contextBridge, ipcRenderer } = require('electron')
 // the above is not loading the import correcytly and says that the module not found and it is in the same directory as this file
 const path = require('path');
-const { Student } = require('./models/student.js')
-const { Dorm } = require('./models/dorm.js')
+// const { Student } = require('./models/student.js')
+// const { Dorm } = require('./models/dorm.js')
 // const { BehavioralLog } = require('./models/behavioralLog.js')
 // const { Period } = require('./models/period.js')
 
@@ -94,6 +94,12 @@ contextBridge.exposeInMainWorld('server', {
         ipcRenderer.send("getBehavioralLog", studentID, date)
         ipcRenderer.once("behavioralLogLoaded", (event, res) => {
             console.error("Successfully Back in preload")
+            cb(res)
+        })
+    },
+    updateStudentDorm: (studentID, dormID, cb) => {
+        ipcRenderer.send("updateStudentDorm", studentID, dormID)
+        ipcRenderer.once("studentDormUpdated", (event, res) => {
             cb(res)
         })
     }

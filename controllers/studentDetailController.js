@@ -5,8 +5,21 @@ const sbGroup = document.getElementById("secondButtonGroup")
 const downloadEButton = document.getElementById("downloadExcelButton")
 const addNewPeriodButton = document.getElementById("addNewPeriodButton")
 ctx.style.display = "none"
-
+const dormSelect = document.getElementById("dormSelect")
 const subtitle = document.getElementById("scatPlot")
+const subMoveDorm = document.getElementById("submitStudentButton")
+
+
+
+window.server.getDorms(100, 0, (res) => {
+    console.log(res)
+    for (let i = 0; i < res.length; i++) {
+        let option = document.createElement("option")
+        option.value = res[i].id
+        option.innerText = res[i].id
+        dormSelect.appendChild(option)
+    }
+})
 let days = 60
 const set7Days = (c, data) => {
     const res = []
@@ -159,6 +172,14 @@ window.ipcComms.studentDetailViewID((id) => {
     dormId.addEventListener("click", () => {
         window.server.getDormByID(id.dormID, (res) => {
             window.ipcComms.dormDetailView(res)
+        })
+    })
+    subMoveDorm.addEventListener("click", (event) => {
+        event.preventDefault()
+        id.dormID = dormSelect.value
+        dormId.innerText = "Dorm Number: " + dormSelect.value
+        window.server.updateStudentDorm(id._id, dormSelect.value, (res) => {
+            console.log(res)
         })
     })
     const res = []

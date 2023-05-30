@@ -109,7 +109,7 @@ function createSpreadsheet(data, student, dpath) {
 
 function createWindow() {
   const win = new BrowserWindow({
-    width: 1000,
+    width: 1250,
     height: 1000,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
@@ -247,6 +247,12 @@ function createWindow() {
     s.saveBehavioralLog(behavioralLog, (res) => {
       console.log(res)
       event.reply("behavioralLogAdded", res)
+    })
+  })
+  ipcMain.on("updateStudentDorm", (event, studentID, dormID) => {
+    s.updateStudentDorm(studentID, dormID, (res) => {
+      console.log(res)
+      event.reply("studentDormUpdated", res)
     })
   })
   win.removeMenu()
